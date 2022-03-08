@@ -1,10 +1,10 @@
 buildscript {
     ext {
-        springBootVersion = '2.1.7.RELEASE'
+        springBootVersion = '2.1.9.RELEASE'
     }
     repositories {
         mavenCentral()
-        jcenter()
+        //jcenter()
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -25,5 +25,8 @@ repositories {
 
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.projectlombok:lombok')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    compile('com.h2database:h2')
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
