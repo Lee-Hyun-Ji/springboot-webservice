@@ -17,19 +17,19 @@ public class IndexController {
     @GetMapping("/")
     public String index(Model model) {
         model.addAttribute("posts", postsService.findAllDesc());
-        return "index";
+        return "index"; // = src/main/resources/templates/"index".mustache
     }
 
     @GetMapping("/posts/save")
     public String postsSave() {
         return "posts-save";
-    }
+    } // = src/main/resources/templates/"posts-save".mustache
 
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
 
-        return "posts-update";
+        return "posts-update"; // = src/main/resources/templates/"posts-update".mustache
     }
 }
