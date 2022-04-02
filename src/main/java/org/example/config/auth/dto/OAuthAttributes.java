@@ -66,7 +66,7 @@ public class OAuthAttributes {
                 .name(name)
                 .email(email)
                 .picture(picture)
-                .role(Role.GUEST) // 가입시 기본권한: GUEST
+                .role(Role.USER) // 가입시 기본권한: USER
                 .build();
     }
 }
