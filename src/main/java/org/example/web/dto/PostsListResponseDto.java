@@ -4,18 +4,20 @@ import lombok.Getter;
 import org.example.domain.posts.Posts;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 public class PostsListResponseDto {
     private Long id;
     private String title;
     private String author;
-    private LocalDateTime modifiedDate;
+    private String modifiedDate;
 
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();
         this.title = entity.getTitle();
         this.author = entity.getAuthor();
-        this.modifiedDate = entity.getModifiedDate();
+        this.modifiedDate = DateTimeFormatter
+                .ofPattern("yyyy-MM-dd HH:mm:ss").format(entity.getModifiedDate());
     }
 }
