@@ -18,6 +18,19 @@
                     <a href="/oauth2/authorization/naver"
                        class="btn btn-secondary active" role="button">Naver Login</a>
                 {{/userName}}
+                <br>
+                {{#hasPrev}}
+                    <a href="?page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
+                {{/hasPrev}}
+                {{^hasPrev}}
+                    <a href="?page={{previous}}" role="button" class="btn btn-dark disabled">이전 페이지</a>
+                {{/hasPrev}}
+                {{#hasNext}}
+                    <a href="?page={{next}}" role="button" class="btn btn-dark">다음 페이지</a>
+                {{/hasNext}}
+                {{^hasNext}}
+                    <a href="?page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
+                {{/hasNext}}
             </div>
         </div>
         <br>
@@ -42,6 +55,8 @@
                 {{/posts}}
             </tbody>
         </table>
+
+
     </div>
 
 {{>layout/footer}}

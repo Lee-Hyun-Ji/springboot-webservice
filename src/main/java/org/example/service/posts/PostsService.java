@@ -7,6 +7,8 @@ import org.example.web.dto.PostsListResponseDto;
 import org.example.web.dto.PostsResponseDto;
 import org.example.web.dto.PostsSaveRequestDto;
 import org.example.web.dto.PostsUpdateRequestDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,10 +44,9 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsListResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc().stream()
-                .map(PostsListResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<PostsListResponseDto> pageList(Pageable pageable){
+        return  postsRepository.findAll(pageable)
+                .map(m -> new PostsListResponseDto(m));
     }
 
     @Transactional

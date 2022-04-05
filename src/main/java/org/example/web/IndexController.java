@@ -4,7 +4,12 @@ import lombok.RequiredArgsConstructor;
 import org.example.config.auth.LoginUser;
 import org.example.config.auth.dto.SessionUser;
 import org.example.service.posts.PostsService;
+import org.example.web.dto.PostsListResponseDto;
 import org.example.web.dto.PostsResponseDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,9 +25,15 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user) {
-        model.addAttribute("posts", postsService.findAllDesc());
-        //SessionUser user = (SessionUser) httpSession.getAttribute("user"); -> Annotation으로 변경
+    public String index(Model model,
+                        @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC)Pageable pageable,
+                        @LoginUser SessionUser user) {
+        Page<PostsListResponseDto> pageList = postsService.pageList(pageable);
+        model.addAttribute("posts", pageList);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("hasPrev", pageList.hasPrevious());
+        model.addAttribute("hasNext", pageList.hasNext());
         if (user != null) {
             model.addAttribute("userName", user.getName());
         }
