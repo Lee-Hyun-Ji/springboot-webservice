@@ -1,24 +1,9 @@
 {{>layout/header}}
-
-    <h1>스프링 부트로 시작하는 웹 서비스</h1>
     <div class="col-md-12">
-        <!-- 로그인 영역 -->
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button"
                    class="btn btn-primary">글 등록</a>
-                {{#userName}} <!-- if(userName != null) -->
-                    Logged in as: <span id="user">{{userName}}</span>
-                    <a href="/logout" class="btn btn-info active"
-                       role="button">Logout</a>
-                {{/userName}}
-                {{^userName}} <!-- if(userName == null) -->
-                    <a href="/oauth2/authorization/google"
-                       class="btn btn-success active" role="button">Google Login</a>
-                    <a href="/oauth2/authorization/naver"
-                       class="btn btn-secondary active" role="button">Naver Login</a>
-                {{/userName}}
-                <br>
                 {{#hasPrev}}
                     <a href="?page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
                 {{/hasPrev}}
@@ -32,10 +17,6 @@
                     <a href="?page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
                 {{/hasNext}}
                 <br>
-                <form action="/posts/search" method="GET" class="form-inline p-2 bd-highlight" role="search">
-                    <input type="text" name="keyword" class="form-control" id="search" placeholder="검색">
-                    <button class="btn btn-primary" type="submit">검색</button>
-                </form>
 
             </div>
         </div>
