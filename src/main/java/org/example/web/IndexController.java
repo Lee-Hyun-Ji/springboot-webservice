@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
@@ -38,6 +39,24 @@ public class IndexController {
             model.addAttribute("userName", user.getName());
         }
         return "index"; // = src/main/resources/templates/"index".mustache
+    }
+
+    @GetMapping("/posts/search")
+    public String search(String keyword, Model model,
+                         @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC)Pageable pageable,
+                         @LoginUser SessionUser user) {
+        Page<PostsListResponseDto> searchList = postsService.search(keyword, pageable);
+        model.addAttribute("searchList", searchList);
+        model.addAttribute("keyword", keyword);
+        model.addAttribute("previous", pageable.previousOrFirst().getPageNumber());
+        model.addAttribute("next", pageable.next().getPageNumber());
+        model.addAttribute("hasPrev", searchList.hasPrevious());
+        model.addAttribute("hasNext", searchList.hasNext());
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
+        return "posts-search";
     }
 
     @GetMapping("/posts/save")

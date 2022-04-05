@@ -43,9 +43,17 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+    /* 페이징 리스트 */
     @Transactional(readOnly = true)
     public Page<PostsListResponseDto> pageList(Pageable pageable){
         return  postsRepository.findAll(pageable)
+                .map(m -> new PostsListResponseDto(m));
+    }
+
+    /* 게시글 검색 */
+    @Transactional
+    public Page<PostsListResponseDto> search(String keyword, Pageable pageable) {
+        return postsRepository.findByTitleContaining(keyword, pageable)
                 .map(m -> new PostsListResponseDto(m));
     }
 
