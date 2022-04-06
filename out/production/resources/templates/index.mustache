@@ -1,26 +1,6 @@
 {{>layout/header}}
     <div class="col-md-12">
-        <div class="row">
-            <div class="col-md-6">
-                <a href="/posts/save" role="button"
-                   class="btn btn-primary">글 등록</a>
-                {{#hasPrev}}
-                    <a href="?page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
-                {{/hasPrev}}
-                {{^hasPrev}}
-                    <a href="?page={{previous}}" role="button" class="btn btn-dark disabled">이전 페이지</a>
-                {{/hasPrev}}
-                {{#hasNext}}
-                    <a href="?page={{next}}" role="button" class="btn btn-dark">다음 페이지</a>
-                {{/hasNext}}
-                {{^hasNext}}
-                    <a href="?page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
-                {{/hasNext}}
-                <br>
 
-            </div>
-        </div>
-        <br>
         <!-- 목록 출력 영역 -->
         <table class="table table-horizontal table-bordered">
             <thead class="thread-strong">
@@ -43,6 +23,24 @@
             </tbody>
         </table>
 
+        <!--    페이징 처리    -->
+        <div class="row">
+            <div class="col-md-12" id="page-btn">
+                {{#hasPrev}}
+                    <a href="?page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
+                {{/hasPrev}}
+                {{^hasPrev}}
+                    <a href="?page={{previous}}" role="button" class="btn btn-dark disabled">이전 페이지</a>
+                {{/hasPrev}}
+                {{#hasNext}}
+                    <a href="?page={{next}}" role="button" class="btn btn-dark">다음 페이지</a>
+                {{/hasNext}}
+                {{^hasNext}}
+                    <a href="?page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
+                {{/hasNext}}
+
+            </div>
+        </div>
 
     </div>
 

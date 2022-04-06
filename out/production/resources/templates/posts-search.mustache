@@ -1,25 +1,7 @@
 {{>layout/header}}
 
-<h1>스프링 부트로 시작하는 웹 서비스</h1>
 <div class="col-md-12">
-    <!-- 로그인 영역 -->
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/posts/save" role="button"
-               class="btn btn-primary">글 등록</a>
-            <br>
-            {{#hasPrev}}
-                <a href="/posts/search?keyword={{keyword}}&page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
-            {{/hasPrev}}
-            {{^hasPrev}}
-                <a href="/posts/search?keyword={{keyword}}&page={{previous}}" role="button" class="btn btn-dark disabled">이전 페이지</a>
-            {{/hasPrev}}
-            {{#hasNext}}
-                <a href="/posts/search?keyword={{keyword}}&page={{next}}" role="button" class="btn btn-dark">다음 페이지</a>
-            {{/hasNext}}
-            {{^hasNext}}
-                <a href="/posts/search?keyword={{keyword}}&page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
-            {{/hasNext}}
+
     <!-- 목록 출력 영역 -->
     <table class="table table-horizontal table-bordered">
         <thead class="thread-strong">
@@ -42,6 +24,23 @@
         </tbody>
     </table>
 
+    <!-- 로그인 영역 -->
+    <div class="row">
+        <div class="col-md-12" id="page-btn">
+            {{#hasPrev}}
+                <a href="/posts/search?keyword={{keyword}}&page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
+            {{/hasPrev}}
+            {{^hasPrev}}
+                <a href="/posts/search?keyword={{keyword}}&page={{previous}}" role="button" class="btn btn-dark disabled">이전 페이지</a>
+            {{/hasPrev}}
+            {{#hasNext}}
+                <a href="/posts/search?keyword={{keyword}}&page={{next}}" role="button" class="btn btn-dark">다음 페이지</a>
+            {{/hasNext}}
+            {{^hasNext}}
+                <a href="/posts/search?keyword={{keyword}}&page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
+            {{/hasNext}}
+        </div>
+    </div>
 
 </div>
 

@@ -7,29 +7,35 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-<!--    Header(서비스 네임, 로그인)-->
-    <div id="header" class="jumbotron text-center">
-        <a href="/"><h3 class="display-4">자유 게시판</h3></a>
-        <p class="lead">Google 또는 Naver 로그인 후, 게시글을 작성하실 수 있습니다.</p>
-        {{#userName}} <!-- if(userName != null) -->
-            <span id="user">{{userName}}님, 안녕하세요!</span>
-            <a href="/logout" class="btn btn-info active"
-               role="button">로그아웃</a>
-        {{/userName}}
-        {{^userName}} <!-- if(userName == null) -->
-            <a href="/oauth2/authorization/google"
-               class="btn btn-primary active" role="button">Google 로그인</a>
-            <a href="/oauth2/authorization/naver"
-               class="btn btn-success active" role="button">Naver 로그인</a>
-        {{/userName}}
+<!--Header(이름, 안내말, 로그인 버튼, 로그아웃 버튼, 글등록 버튼)-->
+    <div id="header" class="col-md-12">
+        <div class="row d-flex">
+            <div class="col-md-6 form-left">
+                <h1>자유 게시판</h1>
+            </div>
+            <div class="col-md-3 ml-auto">
+                {{#userName}}  <!-- if(userName != null) -->
+                    <span id="user"> {{userName}}님, 안녕하세요! </span>
+                    <br>
+                    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+                    <a href="/logout" class="btn btn-info active"
+                       role="button">로그아웃</a>
+                {{/userName}}
+                {{^userName}}  <!-- if(userName == null) -->
+                    <span id="user"> 게시글 등록을 위해 로그인해주세요. </span>
+                    <br>
+                    <a href="/oauth2/authorization/google"
+                       class="btn btn-primary active" role="button">Google 로그인</a>
+                    <a href="/oauth2/authorization/naver"
+                       class="btn btn-success active" role="button">Naver 로그인</a>
+                {{/userName}}
+            </div>
+            <div class="col-md-3 ml-auto">
+                <form action="/posts/search" method="GET" class="form-inline my-2 my-lg-0 ml-auto" role="search">
+                    <input type="search" name="keyword" class="form-control mr-sm-2" id="search" aria-label="Search" placeholder="검색">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+                </form>
+            </div>
+        </div>
     </div>
 
-<!--Navigation(검색)-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <form action="/posts/search" method="GET" class="form-inline my-2 my-lg-0" role="search">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <input type="search" name="keyword" class="form-control mr-sm-2" id="search" aria-label="Search" placeholder="검색">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
-            </div>
-        </form>
-    </nav>
