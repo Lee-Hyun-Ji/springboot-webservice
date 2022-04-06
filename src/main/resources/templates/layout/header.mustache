@@ -11,7 +11,7 @@
     <div id="header" class="col-md-12">
         <div class="row d-flex">
             <div class="col-md-6 form-left">
-                <h1>자유 게시판</h1>
+                <a href="/"><h1>자유 게시판</h1></a>
             </div>
             <div class="col-md-3 ml-auto">
                 {{#userName}}  <!-- if(userName != null) -->
@@ -22,7 +22,7 @@
                        role="button">로그아웃</a>
                 {{/userName}}
                 {{^userName}}  <!-- if(userName == null) -->
-                    <span id="user"> 게시글 등록을 위해 로그인해주세요. </span>
+                    <span id="user"> 로그인 후 이용 가능합니다. </span>
                     <br>
                     <a href="/oauth2/authorization/google"
                        class="btn btn-primary active" role="button">Google 로그인</a>

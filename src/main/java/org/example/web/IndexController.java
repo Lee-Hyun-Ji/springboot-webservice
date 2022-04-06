@@ -60,20 +60,14 @@ public class IndexController {
     }
 
     @GetMapping("/posts/save")
-    public String postsSave(Model model, @LoginUser SessionUser user) {
-        if (user != null) {
-            model.addAttribute("userName", user.getName());
-        }
-        return "posts-save";
-    } // = src/main/resources/templates/"posts-save".mustache
+    public String postsSave() {
+        return "posts-save"; // = src/main/resources/templates/"posts-save".mustache
+    }
 
     @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model, @LoginUser SessionUser user) {
+    public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
         model.addAttribute("post", dto);
-        if (user != null) {
-            model.addAttribute("userName", user.getName());
-        }
 
         return "posts-update"; // = src/main/resources/templates/"posts-update".mustache
     }
