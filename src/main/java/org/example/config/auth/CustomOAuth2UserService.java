@@ -31,7 +31,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         OAuth2User oAuth2User = delegate.loadUser(userRequest);
 
         /*
-        registrationId: 로그인 진행 중인 서비스(구글, 네이버..)를 구분하는 Id
+        registrationId: 로그인 진행 중인 서비스(구글, 네이버)를 구분하는 Id
         userNameAttributeName: 로그인 진행시 키로 사용되는 필드값(구글: sub/ 네이버: id)
         attributes: OAuth2UserService를 통해 가져온 OAuth2User의 속성값을 담은 클래스
          */
