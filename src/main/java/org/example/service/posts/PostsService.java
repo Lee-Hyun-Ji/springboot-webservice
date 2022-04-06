@@ -43,6 +43,14 @@ public class PostsService {
         return new PostsResponseDto(entity);
     }
 
+    @Transactional
+    public void delete (Long id) {
+        Posts posts = postsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        postsRepository.delete(posts);
+    }
+
     /* 페이징 리스트 */
     @Transactional(readOnly = true)
     public Page<PostsListResponseDto> pageList(Pageable pageable){
@@ -51,17 +59,14 @@ public class PostsService {
     }
 
     /* 게시글 검색 */
-    @Transactional
+    @Transactional(readOnly = true)
     public Page<PostsListResponseDto> search(String keyword, Pageable pageable) {
         return postsRepository.findByTitleContaining(keyword, pageable)
                 .map(m -> new PostsListResponseDto(m));
     }
 
     @Transactional
-    public void delete (Long id) {
-        Posts posts = postsRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
-
-        postsRepository.delete(posts);
+    public int updateView(Long id) {
+        return postsRepository.updateView(id);
     }
 }

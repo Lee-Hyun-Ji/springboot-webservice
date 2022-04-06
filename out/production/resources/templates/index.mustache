@@ -9,15 +9,17 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>최종 수정일</th>
+                <th>조회수</th>
             </tr>
             </thead>
             <tbody id="tbody">
                 {{#posts}}  <!-- posts = List<PostsListResponseDto> -->
                     <tr>
                         <td>{{id}}</td>
-                        <td><a href="/posts/update/{{id}}">{{title}}</a></td>
+                        <td><a href="/posts/read/{{id}}">{{title}}</a></td>
                         <td>{{author}}</td>
                         <td>{{modifiedDate}}</td>
+                        <td>{{view}}</td>
                     </tr>
                 {{/posts}}
             </tbody>

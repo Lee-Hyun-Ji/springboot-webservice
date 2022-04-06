@@ -12,6 +12,7 @@ public class PostsListResponseDto {
     private String title;
     private String author;
     private String modifiedDate;
+    private int view;
 
     public PostsListResponseDto(Posts entity) {
         this.id = entity.getId();
@@ -19,5 +20,6 @@ public class PostsListResponseDto {
         this.author = entity.getAuthor();
         this.modifiedDate = DateTimeFormatter
                 .ofPattern("yyyy-MM-dd HH:mm:ss").format(entity.getModifiedDate());
+        this.view = entity.getView();
     }
 }

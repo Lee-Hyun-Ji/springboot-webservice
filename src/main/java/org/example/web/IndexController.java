@@ -41,6 +41,7 @@ public class IndexController {
         return "index"; // = src/main/resources/templates/"index".mustache
     }
 
+    /* 게시글 검색하기 */
     @GetMapping("/posts/search")
     public String search(String keyword, Model model,
                          @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC)Pageable pageable,
@@ -59,11 +60,36 @@ public class IndexController {
         return "posts-search";
     }
 
+    /* 게시글 상세 보기 */
+    @GetMapping("/posts/read/{id}")
+    public String read(@PathVariable Long id,  @LoginUser SessionUser user, Model model) {
+        PostsResponseDto dto = postsService.findById(id);
+        model.addAttribute("post", dto);
+
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        //게시글 작성자 본인 확인 -> 실명으로 작성하도록 고정
+        if(dto.getAuthor().equals(user.getName())){
+            model.addAttribute("isAuthor", true);
+        }
+        //view++
+        postsService.updateView(id);
+        model.addAttribute("posts", dto);
+
+        return "posts-read";
+    }
+
+    /* 게시글 저장하기 */
     @GetMapping("/posts/save")
-    public String postsSave() {
+    public String postsSave(@LoginUser SessionUser user, Model model) {
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
         return "posts-save"; // = src/main/resources/templates/"posts-save".mustache
     }
 
+    /* 게시글 수정하기 */
     @GetMapping("/posts/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         PostsResponseDto dto = postsService.findById(id);
