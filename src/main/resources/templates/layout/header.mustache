@@ -12,32 +12,31 @@
     <div id="header" class="col-md-12">
         <div class="row d-flex">
             <div class="col-md-6 form-left">
-                <a href="/"><h1>자유 게시판</h1></a>
+                <a id="home" href="/"><h1>자유 게시판</h1></a>
             </div>
-
-            <div class="col-md-3 ml-auto">
-                {{#userName}}  <!-- if(userName != null) -->
-                    <span id="user"> {{userName}}님, 안녕하세요! </span>
-                    <br>
-                    <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-                    <a href="/logout" class="btn btn-info active"
-                       role="button">로그아웃</a>
-                {{/userName}}
-                {{^userName}}  <!-- if(userName == null) -->
-                    <span id="user"> 로그인 후 이용 가능합니다. </span>
-                    <br>
-                    <a href="/oauth2/authorization/google"
-                       class="btn btn-primary active" role="button">Google 로그인</a>
-                    <a href="/oauth2/authorization/naver"
-                       class="btn btn-success active" role="button">Naver 로그인</a>
-                {{/userName}}
-            </div>
-            <div class="col-md-3 ml-auto">
-                <form action="/posts/search" method="GET" class="form-inline my-2 my-lg-0 ml-auto" role="search">
-                    <input type="search" name="keyword" class="form-control mr-sm-2" id="search" aria-label="Search" placeholder="검색">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">검색</button>
+            <!--게시글 검색-->
+            <div class="row col-md-6 ml-auto">
+                <form action="/posts/search" method="GET" class="form-inline my-2 my-lg-0 ml-auto align-self-center" role="search" id="search-form">
+                    <input type="search" name="keyword" class="form-control mr-sm-2" id="search" aria-label="Search" placeholder="게시글 검색">
+                    <button class="btn btn-dark my-2 my-sm-0" type="submit">검색</button>
                 </form>
             </div>
         </div>
     </div>
 
+
+    <div id="login" class="col-md-12 form-right">
+        {{#userName}}  <!-- if(userName != null) -->
+            <span id="user"> {{userName}}님, 안녕하세요! </span>
+            <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
+            <a href="/logout" class="btn btn-info active"
+               role="button">로그아웃</a>
+        {{/userName}}
+        {{^userName}}  <!-- if(userName == null) -->
+            <span id="user"> 로그인 후 이용 가능합니다. </span>
+            <a href="/oauth2/authorization/google"
+               class="btn btn-primary active" role="button">Google 로그인</a>
+            <a href="/oauth2/authorization/naver"
+               class="btn btn-success active" role="button">Naver 로그인</a>
+        {{/userName}}
+    </div>

@@ -27,7 +27,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(Model model,
-                        @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC)Pageable pageable,
+                        @PageableDefault(sort = "id", size = 10, direction = Sort.Direction.DESC)Pageable pageable,
                         @LoginUser SessionUser user) {
         Page<PostsListResponseDto> pageList = postsService.pageList(pageable);
         model.addAttribute("posts", pageList);
@@ -44,7 +44,7 @@ public class IndexController {
     /* 게시글 검색하기 */
     @GetMapping("/posts/search")
     public String search(String keyword, Model model,
-                         @PageableDefault(sort = "id", size = 5, direction = Sort.Direction.DESC)Pageable pageable,
+                         @PageableDefault(sort = "id", size = 10, direction = Sort.Direction.DESC)Pageable pageable,
                          @LoginUser SessionUser user) {
         Page<PostsListResponseDto> searchList = postsService.search(keyword, pageable);
         model.addAttribute("searchList", searchList);
