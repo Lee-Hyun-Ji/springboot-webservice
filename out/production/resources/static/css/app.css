@@ -1,19 +1,51 @@
+/* header.mustache */
 #header {
-    padding: 20px;
-    background-color: #D3D3D3;
-    margin-bottom: 30px;
+    padding: auto 50px;
+    background-color: #17A2B8;
+    margin-bottom: 10px;
+    color: #fff;
 }
 
-#header h1 {
+#header #home {
     font-weight: bolder;
-    vertical-align: middle;
-    margin: 0px;
+    text-decoration: none;
+    color: inherit;
+    margin: auto 20px;
 }
 
-#search {
-    margin: 10px;
+#search-form {
+    margin: 30px;
 }
 
+#login {
+    text-align: right;
+    padding: auto;
+}
+
+#login a {
+    margin: 2px;
+}
+
+/* index.mustache, posts-search.mustache */
 #page-btn {
-    margin: 20px;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+    background-color: #D3D3D3;
+}
+
+h4 {
+    text-align: center;
+    font-weight: bolder;
+}
+
+/* posts-save.mustache, posts-read.mustache */
+#form-container {
+    margin: 20px auto;
+}
+
+.form-group label{
+    font-weight: bolder;
 }

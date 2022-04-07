@@ -1,24 +1,33 @@
 {{>layout/header}}
+    <div class="col-md-8">
 
-    <h1>스프링 부트로 시작하는 웹 서비스</h1>
-    <div class="col-md-12">
-        <!-- 로그인 영역 -->
+        <!-- 목록 출력 영역 -->
+        <table class="table table-horizontal table-bordered">
+            <thead class="thread-dark">
+            <tr>
+                <th class="col-md-1">번호</th>
+                <th class="col-md-3">제목</th>
+                <th class="col-md-1">작성자</th>
+                <th class="col-md-2">최종 수정일</th>
+                <th class="col-md-1">조회수</th>
+            </tr>
+            </thead>
+            <tbody id="tbody">
+                {{#posts}}  <!-- posts = Pages<PostsListResponseDto> -->
+                    <tr>
+                        <td class="text-center">{{id}}</td>
+                        <td><a href="/posts/read/{{id}}">{{title}}</a></td>
+                        <td class="text-center">{{author}}</td>
+                        <td class="text-center">{{modifiedDate}}</td>
+                        <td class="text-center">{{view}}</td>
+                    </tr>
+                {{/posts}}
+            </tbody>
+        </table>
+
+        <!--    페이징 처리    -->
         <div class="row">
-            <div class="col-md-6">
-                <a href="/posts/save" role="button"
-                   class="btn btn-primary">글 등록</a>
-                {{#userName}} <!-- if(userName != null) -->
-                    Logged in as: <span id="user">{{userName}}</span>
-                    <a href="/logout" class="btn btn-info active"
-                       role="button">Logout</a>
-                {{/userName}}
-                {{^userName}} <!-- if(userName == null) -->
-                    <a href="/oauth2/authorization/google"
-                       class="btn btn-success active" role="button">Google Login</a>
-                    <a href="/oauth2/authorization/naver"
-                       class="btn btn-secondary active" role="button">Naver Login</a>
-                {{/userName}}
-                <br>
+            <div class="col-md-12" id="page-btn">
                 {{#hasPrev}}
                     <a href="?page={{previous}}" role="button" class="btn btn-dark">이전 페이지</a>
                 {{/hasPrev}}
@@ -31,31 +40,9 @@
                 {{^hasNext}}
                     <a href="?page={{next}}" role="button" class="btn btn-dark disabled">다음 페이지</a>
                 {{/hasNext}}
+
             </div>
         </div>
-        <br>
-        <!-- 목록 출력 영역 -->
-        <table class="table table-horizontal table-bordered">
-            <thead class="thread-strong">
-            <tr>
-                <th>게시글 번호</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>최종 수정일</th>
-            </tr>
-            </thead>
-            <tbody id="tbody">
-                {{#posts}}  <!-- posts = List<PostsListResponseDto> -->
-                    <tr>
-                        <td>{{id}}</td>
-                        <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                        <td>{{author}}</td>
-                        <td>{{modifiedDate}}</td>
-                    </tr>
-                {{/posts}}
-            </tbody>
-        </table>
-
 
     </div>
 
