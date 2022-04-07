@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody id="tbody">
-        {{#searchList}}  <!-- posts = List<PostsListResponseDto> -->
+        {{#searchList}}  <!-- searchList = Page<PostsListResponseDto> -->
         <tr>
             <td>{{id}}</td>
             <td><a href="/posts/read/{{id}}">{{title}}</a></td>

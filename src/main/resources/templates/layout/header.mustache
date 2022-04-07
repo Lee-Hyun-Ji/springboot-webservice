@@ -7,12 +7,14 @@
     <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
+
 <!--Header(이름, 안내말, 로그인 버튼, 로그아웃 버튼, 글등록 버튼)-->
     <div id="header" class="col-md-12">
         <div class="row d-flex">
             <div class="col-md-6 form-left">
                 <a href="/"><h1>자유 게시판</h1></a>
             </div>
+
             <div class="col-md-3 ml-auto">
                 {{#userName}}  <!-- if(userName != null) -->
                     <span id="user"> {{userName}}님, 안녕하세요! </span>
