@@ -1,0 +1,41 @@
+#header {
+    padding: auto 30px;
+    background-color: #17A2B8;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+#header #home {
+    font-weight: bolder;
+    text-decoration: none;
+    color: inherit;
+    margin: auto 20px;
+}
+
+#login {
+    text-align: right;
+    padding: auto;
+}
+
+#login a {
+    margin: 5px;
+}
+
+#search {
+    margin: 10px;
+}
+
+/* 테이블 가운데 정렬 */
+table {
+    margin: 20px auto;
+    font-size: 85%
+}
+
+th, td {
+    text-align: center;
+}
+
+/* 이전, 다음 페이지 버튼 */
+#page-btn {
+    margin: 20px auto;
+}
