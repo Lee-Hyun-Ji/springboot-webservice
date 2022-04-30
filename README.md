@@ -27,8 +27,6 @@
 
 ### 3. 구현 결과
 
->**EC2 배포 URL:    http://ec2-3-37-20-91.ap-northeast-2.compute.amazonaws.com:8080/**
-
 * 메인 화면
 <img width="957" alt="메인화면" src="https://user-images.githubusercontent.com/84483522/163340806-a6a4f72f-63b1-43d7-882b-a3647c5379bf.PNG">
 
